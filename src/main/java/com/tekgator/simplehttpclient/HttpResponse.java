@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 
 import javax.net.ssl.HttpsURLConnection;
 
+/**
+ * @author Patrick Weiss <info@tekgator.com>
+ */
 public class HttpResponse {
 
     private int code = HttpsURLConnection.HTTP_SEE_OTHER;
