@@ -80,6 +80,11 @@ public class HttpClient {
         return this;
     }
 
+    public HttpClient setUrlParameter(Hashtable<String, String> urlParameters) {
+        builder.urlParameters.putAll(urlParameters);
+        return this;
+    }
+
     public HttpClient clearUrlParameter() {
         builder.urlParameters.clear();
         return this;
@@ -159,6 +164,11 @@ public class HttpClient {
 
         public Builder setUrlParameter(String key, String value) {
             urlParameters.put(key, value);
+            return this;
+        }
+
+        public Builder setUrlParameter(Hashtable<String, String> urlParameters) {
+            this.urlParameters.putAll(urlParameters);
             return this;
         }
 
