@@ -15,15 +15,18 @@ public class HttpResponse {
     private int code = HttpsURLConnection.HTTP_SEE_OTHER;
     private String message = "";
     private String data = "";
+    private boolean successful;
 
     public HttpResponse(HttpsURLConnection httpClient) {
         try {
             code = httpClient.getResponseCode();
             message = httpClient.getResponseMessage();
 
-            if (httpClient.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+            if (code >= HttpsURLConnection.HTTP_OK && code < HttpsURLConnection.HTTP_BAD_REQUEST) {
+                successful = true;
                 data = readResponse(httpClient.getInputStream());
             } else {
+                successful = false;
                 data = readResponse(httpClient.getErrorStream());
             }
         } catch (IOException e) {
@@ -56,6 +59,10 @@ public class HttpResponse {
 
     public String getData() {
         return data;
+    }
+
+    public boolean isSuccessful() {
+        return successful;
     }
 
     @Override
